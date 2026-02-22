@@ -11,6 +11,12 @@ class Reward:
         self.cost = cost
         self.type = type
 
+    def __str__(self):
+        return f"{self.name},   {self.cost},     {self.type}"
+    
+    def __repr__(self):
+        return f"{self.name}, {self.cost}, {self.type}"
+
 def check_reward_type(type_str):
     if type_str == "1" or type_str == "treat":
         return RewardType.TREAT
@@ -32,7 +38,7 @@ def get_type_str(type):
             return "Error: Reward Type Not Found"
 
 
-def new_reward(name_list, reward_list, command_names):
+def new_reward(name_dict, reward_list, command_names):
     print("Creating a new reward, type 'cancel' to return.")
     reward_name = input("\nWhat is the rewards name?\n")
     reward_name = str.lower(reward_name)
@@ -67,14 +73,14 @@ def new_reward(name_list, reward_list, command_names):
             reward_name = str.lower(reward_name)
             if reward_name == "cancel":
                 return
-        elif reward_name in name_list:
+        elif reward_name in name_dict:
             reward_name = input(f"\n{reward_name} is already the name of an existing habit or reward, please enter a new name:\n")
             reward_name = str.lower(reward_name)
             if reward_name == "cancel":
                 return
         else:
             existing_name = 0
-    name_list.append(reward_name)
+    name_dict.append(reward_name)
     reward_list.append(Reward(reward_name, reward_cost, reward_type))
     print(f"\nThe reward '{reward_name}', costing '{reward_cost}' points, with the '{get_type_str(reward_type)}' type has been added.\n")
     return

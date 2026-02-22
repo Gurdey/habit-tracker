@@ -14,6 +14,12 @@ class Habit:
         self.points = points
         self.type = type
 
+    def __str__(self):
+        return f"{self.name},   {self.points},     {self.type}"
+    
+    def __repr__(self):
+        return f"{self.name}, {self.points}, {self.type}"
+
 def check_habit_type(type_str):
     if type_str == "1" or type_str == "self-care":
         return HabitType.SELFCARE
@@ -46,7 +52,7 @@ def get_type_str(type):
         case _:
             return "Error: Habit Type Not Found"
 
-def new_habit(name_list, habit_list, command_names):
+def new_habit(name_dict, habit_list, command_names):
     print("Creating new habit, type 'cancel' to return.")
     habit_name = input("\nWhat is the habits name?\n")
     habit_name = str.lower(habit_name)
@@ -68,11 +74,8 @@ def new_habit(name_list, habit_list, command_names):
         habit_type_str = input("\nWhat type of habit is it?\n1. Self-care\n2. Chores\n3. Exercise\n4. Work\n5. Learning\n6. Other\n")
         habit_type_str = str.lower(habit_type_str)
         if habit_type_str == "cancel":
-            print("Test")
             return
-        print("Test")
         try:
-            print("Test")
             habit_type = check_habit_type(habit_type_str)
             habit_type_valid = 0
         except Exception:
@@ -84,14 +87,14 @@ def new_habit(name_list, habit_list, command_names):
             habit_name = str.lower(habit_name)
             if habit_name == "cancel":
                 return
-        elif habit_name in name_list:
+        elif habit_name in name_dict:
             habit_name = input(f"\n{habit_name} is already the name of an existing habit or reward, please enter a new name:\n")
             habit_name = str.lower(habit_name)
             if habit_name == "cancel":
                 return
         else:
             existing_name = 0
-    name_list.append(habit_name)
+    name_dict[habit_name] = "h"
     habit_list.append(Habit(habit_name, habit_points, habit_type))
     print(f"\nThe habit '{habit_name}', worth '{habit_points}' points, with the '{get_type_str(habit_type)}' type has been added.\n")
     return
