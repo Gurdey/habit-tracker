@@ -1,7 +1,28 @@
+from tkinter import *
+from tkinter import font
+
+root = Tk()
+root.title("Habit Tracker")
+root.geometry("500x350")
+
+
+first_button = Button(root, text="Button One")
+second_button = Button(root, text="Button Two")
+
+first_button.pack(pady=(0,20), fill=X, padx=50)
+second_button.pack(pady=(20,0), fill=X, padx=50)
+
+
+root.mainloop()
+
+
+#Old text-based code
+"""
 from habits import new_habit
 from rewards import new_reward
 
 def main():
+    
     program_active = 0
     command_names = ["exit", "qexit", "habits", "add",]
     name_dict = []
@@ -61,3 +82,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+"""
