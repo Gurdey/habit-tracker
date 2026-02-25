@@ -6,11 +6,16 @@ root.title("Habit Tracker")
 root.geometry("500x350")
 
 
-first_button = Button(root, text="Button One")
-second_button = Button(root, text="Button Two")
+first_frame = Frame(root)
+first_frame.pack(pady=50)
 
-first_button.pack(pady=(0,20), fill=X, padx=50)
-second_button.pack(pady=(20,0), fill=X, padx=50)
+first_button = Button(first_frame, text="Button One")
+second_button = Button(first_frame, text="Button Two")
+third_button = Button(first_frame, text="Button Three")
+
+first_button.grid(row=0, column=0)
+second_button.grid(row=0, column=3)
+third_button.grid(row=0, column=1, columnspan=2, rowspan=2, pady=30, sticky="ewns")
 
 
 root.mainloop()
